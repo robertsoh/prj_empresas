@@ -1,0 +1,4 @@
+Django==2.0.5
+pytz==2018.4
+django-crispy-forms==1.6.1
+psycopg2==2.7.1
