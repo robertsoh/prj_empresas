@@ -2,7 +2,7 @@ from django.db import models
 
 
 class TipoContribuyente(models.Model):
-    codigo = models.CharField('RUC', max_length=6)
+    codigo = models.CharField('código', max_length=50)
     nombre = models.CharField('Nombre', max_length=100)
 
     def __str__(self):
@@ -23,13 +23,13 @@ class Empresa(models.Model):
         (CONDICION_NOHABIDO, 'No habido')
     )
 
-    ruc = models.CharField('RUC', max_length=15)
+    ruc = models.CharField('RUC', max_length=15, unique=True)
     nombre = models.CharField('Nombre', max_length=150)
-    tipo_contribuyente = models.ForeignKey(TipoContribuyente, verbose_name='Tipo contribuyente')
+    tipo_contribuyente = models.ForeignKey(TipoContribuyente, verbose_name='Tipo contribuyente', blank=True, null=True)
     nombre_comercial = models.CharField('Nombre comercial', max_length=150, blank=True, null=True)
     fecha_inscripcion = models.DateField('Fecha inscripción', blank=True, null=True)
     estado = models.CharField('Estado', max_length=10, choices=ESTADO_CHOICES, default=ESTADO_INACTIVO)
-    condicion = models.CharField('Condición', max_length=10, choices=CONDICION_CHOICES, default= CONDICION_HABIDO)
+    condicion = models.CharField('Condición', max_length=10, choices=CONDICION_CHOICES, default=CONDICION_HABIDO)
     domicilio_fiscal = models.CharField('Domicilio fiscal', max_length=255, blank=True, null=True)
 
     def __str__(self):

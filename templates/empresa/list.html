@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load i18n %}
 {% load staticfiles %}
 {% load static %}
 {% block content %}
@@ -22,21 +21,23 @@
           <table class="table table-bordered table-striped">
             <thead>
             <tr>
-              <th>Cod. Modular</th>
-              <th>Cod. Colegio</th>
+              <th>RUC</th>
               <th>Nombre</th>
-              <th>Departamento</th>
-              <th>Provincia</th>
-              <th>Distrito</th>
-              <th>Dirección</th>
-              <th>Área</th>
-              <th>Ugel</th>
+              <th>Tipo contribuyente</th>
+              <th>Fecha inscripción</th>
+              <th>Estado</th>
+              <th>Condición</th>
             </tr>
             </thead>
             <tbody>
             {% for empresa in empresas %}
               <tr>
-                <td></td>
+                <td>{{ empresa.ruc }}</td>
+                <td>{{ empresa.nombre }}</td>
+                <td>{{ empresa.tipo_contribuyente }}</td>
+                <td>{{ empresa.fecha_inscripcion }}</td>
+                <td>{{ empresa.get_estado_display }}</td>
+                <td>{{ empresa.get_condicion_display }}</td>
               </tr>
             {% endfor %}
             </tbody>
@@ -46,7 +47,5 @@
     </div>
   {% endif %}
 {% endblock %}
-
 {% block scripts %}
-
 {% endblock %}
